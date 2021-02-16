@@ -1,6 +1,9 @@
+-- [100,200]
+-- (Charmander, 100)
+-- (Charmander, 100, [Ember, tackle, Sand Attack, fly])
 module Pokemons where
 
-data Names = Charmander | Charmeleon | Charizard deriving (Eq, Show)
+data Names = Charmander | Charmeleon | Charizard deriving (Eq, Show, Enum)
 
 data Moves = Ember | FlameThrower |BasicAttack| FireBlast  deriving (Eq, Show)
 
@@ -17,3 +20,4 @@ damageBase m
 
 
 getBaseDamage move = map damageBase move
+
