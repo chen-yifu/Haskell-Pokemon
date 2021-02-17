@@ -4,7 +4,7 @@ import Pokemon
 
 allPokemons = [defaultCharmander, defaultBulbasaur, defaultWartortle, defaultSpearow]
 
-enumerate = zip [1..]
+enumerate = zip [1..]  --a
 
 isNumber :: String -> Bool
 isNumber str =
