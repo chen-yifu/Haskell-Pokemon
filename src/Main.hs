@@ -1,37 +1,44 @@
-import Pokemons
-
-main :: IO ()
-main = do
-  print("Pick a pokemon")
-  ans<-getLine
-  if isPokemon ans
-    then do
-        print(getMove ans)
-        print("Pick your move:")
-        let baseDamages = getBaseDamage (getMove ans)
-        let temp = zip (getMove ans) baseDamages
-        let tempStr = [show i ++ " : " ++ show move ++ " deals " ++ show damage ++ " damage." | (i, (move, damage)) <- enumerate temp]
-        putStrLn(foldr (++) "" (map (\str -> str ++ "\n") tempStr))    
-        moveIndex <- getLine
-        if isNumber moveIndex
-            then do
-                let moveDmg = [damage | (i, (move, damage)) <- enumerate temp, read moveIndex == i]
-                print("dealt " ++ show (head moveDmg) ++ " damage.")
-            else
-            print("invalid move number. Exiting...")
-    else print("invalid pokemon name. Exiting...")
+module Main where
+import System.IO
+import Pokemon
+import State
+import UserGetMove
+import Move
+import Control.Concurrent
 
 
--- the following helper functions can be put into an utils class
-enumerate = zip [1..]
 
-isNumber :: String -> Bool
-isNumber str =
-    case (reads str) :: [(Double, String)] of
-      [(_, "")] -> True
-      _         -> False
+main :: IO Pokemon
+main = play testState  
 
-isPokemon str = 
-    do
-        let allPokemons = [Charmander ..]
-        foldr (\name rest -> (show name == str) || rest) False allPokemons
+
+play:: State -> IO Pokemon
+play (State (pokemona,pokemonb))  = 
+  do 
+  print ("your " ++pokemonName pokemona++ " hp is: " ++ show (health pokemona))
+  
+  threadDelay 1000000
+  
+  print (pokemonName pokemonb++ " hp is: " ++ show (health pokemonb))
+  threadDelay 1000000
+  print "Pick your move:"
+  ansMove<-getMove pokemona
+  print("Your Pokemon uses " ++ moveName ansMove ++ " and does")
+  print(power ansMove)
+  print "damage!"
+  print "opponent uses 50 damage move!"
+  a <- doDamage 50 pokemona
+  b <- doDamage (power ansMove) pokemonb
+  if health a == 0 
+    then do 
+    putStrLn (pokemonName pokemona)
+    threadDelay 1000000
+    threadDelay 1000000
+    putStrLn "has fainted!"
+    return a 
+    else if health b == 0 
+      then do 
+        putStrLn (pokemonName pokemonb) 
+        putStrLn "has fainted!"
+        return b
+        else play (State (a,b))
