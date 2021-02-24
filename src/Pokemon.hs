@@ -9,7 +9,7 @@ data Pokemon = Pokemon{
   pokemonName::[Char],
   health::Int,
   level::Int,
-  pokemonHP:: Int,
+  pokemonHP:: Integer,
   pokemonType1::Type,
   pokemonType2::Type,
   attack::Int,
@@ -19,14 +19,7 @@ data Pokemon = Pokemon{
   pokemonMoves::[Move]
   }  deriving (Eq,Show,Read)
 
-
---try not ot modify this
-doDamage value pokemon =
-  return pokemon {pokemonHP = pokemonHP pokemon - value}
-
---Here is the damage calculation part
-calcDmg value pokemon = return (max (value - (div (defence pokemon) 2)) 0)
-
+  
 
 damageBase m
   | m == "Ember" = 20

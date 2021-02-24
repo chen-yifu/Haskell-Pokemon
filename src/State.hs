@@ -28,7 +28,7 @@ getMyPokemon (State (a,b)) = a
 getOpPokemon :: State -> Pokemon
 getOpPokemon (State (a,b)) = b
 
-testState = State (maractus,lilligant)
+testState = State (maractus,maractus)
 
 
 
