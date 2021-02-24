@@ -19,9 +19,13 @@ data Pokemon = Pokemon{
   pokemonMoves::[Move]
   }  deriving (Eq,Show,Read)
 
-doDamage value pokemon =
-  return pokemon {health = health pokemon - value}
 
+--try not ot modify this
+doDamage value pokemon =
+  return pokemon {pokemonHP = pokemonHP pokemon - value}
+
+--Here is the damage calculation part
+calcDmg value pokemon = return (max (value - (div (defence pokemon) 2)) 0)
 
 
 damageBase m
@@ -30,11 +34,11 @@ damageBase m
   | m == "FireBlast" = 50
   | otherwise = 5
 
-baseHealth:: Int
-baseHealth = 100
-
 baseLevel:: Int
 baseLevel = 20
+
+baseHealth:: Int
+baseHealth = 20
 
 bulbasaur :: Pokemon
 bulbasaur = Pokemon {

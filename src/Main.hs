@@ -16,32 +16,33 @@ main = play testState
 play:: State -> IO Pokemon
 play (State (pokemona,pokemonb))  = 
   do 
-  print ("your " ++pokemonName pokemona++ " hp is: " ++ show (health pokemona))
+  print ("your " ++pokemonName pokemona++ " hp is: " ++ show (pokemonHP pokemona))
   
   threadDelay 1000000
   
-  print (pokemonName pokemonb++ " hp is: " ++ show (health pokemonb))
+  print (pokemonName pokemonb++ " hp is: " ++ show (pokemonHP pokemonb))
   threadDelay 1000000
   print "Pick your move:"
   ansMove<-getMove pokemona
   print("Your Pokemon uses " ++ moveName ansMove ++ " and does")
-  print(power ansMove)
+  realDmg <- calcDmg (power ansMove) pokemonb
+  print(realDmg)
   print "damage!"
-  b <- doDamage (power ansMove) pokemonb
-  --print "opponent uses 50 damage move!"
-  --a <- doDamage 50 pokemona
+  b <- doDamage (realDmg) pokemonb
   a <- dumbAi pokemona b
 
-  if health a <= 0
+  if pokemonHP b <= 0
     then do 
-    putStrLn (pokemonName pokemona)
+    putStrLn (pokemonName pokemonb)
     threadDelay 1000000
     threadDelay 1000000
     putStrLn "has fainted!"
-    return a
-    else if health b <= 0
+    return b
+    else if pokemonHP a <= 0
       then do 
-        putStrLn (pokemonName pokemonb) 
+        putStrLn (pokemonName pokemona)
+        threadDelay 1000000
+        threadDelay 1000000
         putStrLn "has fainted!"
         return a
         else play (State (a,b))

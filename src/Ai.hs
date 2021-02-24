@@ -1,8 +1,13 @@
 module Ai where
 import Pokemon
+import Move
 
 dumbAi a b =
  do
-  a <- doDamage 50 a
-  print "opponent uses 50 damage move!"
+  let i = 0
+  print(pokemonMoves a)
+  a <- doDamage 15 a
+  print "opponent uses dummy attack!!"
   return a
+
+getFirstMove (h,t)= return h
