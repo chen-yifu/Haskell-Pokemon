@@ -30,14 +30,14 @@ play (State (pokemona,pokemonb))  =
   print "opponent uses 50 damage move!"
   a <- doDamage 50 pokemona
 
-  if health a == 0 
+  if health a <= 0
     then do 
     putStrLn (pokemonName pokemona)
     threadDelay 1000000
     threadDelay 1000000
     putStrLn "has fainted!"
     return a 
-    else if health b == 0 
+    else if health b <= 0
       then do 
         putStrLn (pokemonName pokemonb) 
         putStrLn "has fainted!"
