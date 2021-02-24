@@ -2,7 +2,7 @@ module GameUtils where
 
 import Pokemon
 
-allPokemons = [defaultCharmander, defaultBulbasaur, defaultWartortle, defaultSpearow]
+allPokemons = [lilligant, maractus, krokorok, scraggy]
 
 enumerate = zip [1..]  --a
 

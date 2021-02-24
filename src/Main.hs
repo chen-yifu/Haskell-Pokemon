@@ -26,9 +26,10 @@ play (State (pokemona,pokemonb))  =
   print("Your Pokemon uses " ++ moveName ansMove ++ " and does")
   print(power ansMove)
   print "damage!"
+  b <- doDamage (power ansMove) pokemonb
   print "opponent uses 50 damage move!"
   a <- doDamage 50 pokemona
-  b <- doDamage (power ansMove) pokemonb
+
   if health a == 0 
     then do 
     putStrLn (pokemonName pokemona)
