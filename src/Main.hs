@@ -5,6 +5,7 @@ import State
 import UserGetMove
 import Move
 import Control.Concurrent
+import Ai
 
 
 
@@ -27,8 +28,9 @@ play (State (pokemona,pokemonb))  =
   print(power ansMove)
   print "damage!"
   b <- doDamage (power ansMove) pokemonb
-  print "opponent uses 50 damage move!"
-  a <- doDamage 50 pokemona
+  --print "opponent uses 50 damage move!"
+  --a <- doDamage 50 pokemona
+  a <- dumbAi pokemona b
 
   if health a <= 0
     then do 
@@ -36,10 +38,10 @@ play (State (pokemona,pokemonb))  =
     threadDelay 1000000
     threadDelay 1000000
     putStrLn "has fainted!"
-    return a 
+    return a
     else if health b <= 0
       then do 
         putStrLn (pokemonName pokemonb) 
         putStrLn "has fainted!"
-        return b
+        return a
         else play (State (a,b))
