@@ -45,7 +45,7 @@ play (State (pokemona,pokemonb))  =
       putStrLn "has fainted!"
       return (pokemona,b)
       else do
-        (pa,pb) <- dumbAi pokemona b
+        (pa,pb) <- medAi pokemona b
         if pokemonHP pa <= 0
             then do 
               putStrLn (pokemonName pokemona)
@@ -54,3 +54,33 @@ play (State (pokemona,pokemonb))  =
               putStrLn "has fainted!"
               return (pa,b)
               else play (State (pa,pb))
+
+play3v3 (h1:t1) [] =
+ do
+ print ("you win")
+ return (h1:t1)
+
+play3v3 [] (h2:t2)  =
+ do
+ print( "you lose")
+ return (h2:t2)
+
+play3v3 (h1:t1) (h2:t2)  =
+ do
+ (a,b) <- play (State (h1,h2))
+ if pokemonHP a <=0
+  then do
+  print "you lose one round!"
+  play3v3 (t1) (b:t2)
+  else do
+  print "you win one round!"
+  play3v3 (a:t1) (t2)
+
+
+
+
+
+
+
+
+

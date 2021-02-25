@@ -28,7 +28,7 @@ calcDmg pokemonA attMove pokemonHit =
     let attackInt = attack pokemonA
     let defenceInt = defence pokemonHit
     let pow = power attMove
-    let attackDivDefence = div attackInt defenceInt -- integer
+    let attackDivDefence = (max (attackInt-defenceInt) 1) -- integer
     modifier <- (calcEff attMove pokemonHit)
     let dmg = (fromIntegral (attackDivDefence * pow)) * modifier / 5
     let roundedDmg = round dmg

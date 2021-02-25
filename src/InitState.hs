@@ -22,7 +22,7 @@ initState =
         moves <- (getFourMoves (pokemonMoves chosenPokemon) [])
         chosenPokemon <- update  moves chosenPokemon
 
-        play (State (chosenPokemon, pikachu))
+        play (State (chosenPokemon, lilligant))
 
 getFourMoves availableMoves movesChosen =
     if length movesChosen < 4
