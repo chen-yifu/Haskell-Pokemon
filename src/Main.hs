@@ -9,11 +9,11 @@ import Ai
 import CalculateDamage
 
 
-main :: IO Pokemon
+main :: IO (Pokemon,Pokemon)
 main = play testState   
 
 
-play:: State -> IO Pokemon
+play:: State -> IO (Pokemon,Pokemon)
 play (State (pokemona,pokemonb))  = 
   do 
   print ("your " ++pokemonName pokemona++ " hp is: " ++ show (pokemonHP pokemona))
@@ -34,24 +34,23 @@ play (State (pokemona,pokemonb))  =
     realDmg <- calcDmg pokemona ansMove pokemonb
     -- effDmg <- calcEff ansMove pokemonb
     -- let finalDmg = realDmg * effDmg
-    -- print finalDmg 
+    print realDmg
     print "damage!"
     b <- doDamage realDmg pokemonb
-
     if pokemonHP b <= 0
       then do 
       putStrLn (pokemonName pokemonb)
       threadDelay 1000000
       threadDelay 1000000
       putStrLn "has fainted!"
-      return b
+      return (pokemona,b)
       else do
-        a <- dumbAi pokemona b
-        if pokemonHP a <= 0
+        (pa,pb) <- dumbAi pokemona b
+        if pokemonHP pa <= 0
             then do 
               putStrLn (pokemonName pokemona)
               threadDelay 1000000
               threadDelay 1000000
               putStrLn "has fainted!"
-              return a
-              else play (State (a,b))
+              return (pa,b)
+              else play (State (pa,pb))

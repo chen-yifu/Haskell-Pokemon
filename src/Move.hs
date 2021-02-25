@@ -10,6 +10,47 @@ module Move where
     moveType::Type
     } deriving (Eq,Show,Read)
 
+  dummy :: Move
+  dummy = Move {
+  moveName = "If this shows up something is wrong",
+  moveDescription = "dummy",
+  moveType = Normal,
+  power = 0,
+  accuracy = 1.0,
+  effect = [],
+  pp = 35
+  }
+  opMove :: Move
+  opMove = Move {
+  moveName = "If this shows up something is wrong",
+  moveDescription = "dummy",
+  moveType = Normal,
+  power = 100000,
+  accuracy = 1.0,
+  effect = [],
+  pp = 35
+  }
+
+
+  heal25 = Move {
+             moveName = "heal s",
+             moveDescription = "The user heals for 25.",
+             moveType = Normal,
+             power = 25,
+             accuracy = 1.0,
+             effect = [],
+             pp = 35
+             }
+  heal15 = Move {
+             moveName = "heal s",
+             moveDescription = "The user heals for 15.",
+             moveType = Normal,
+             power = 15,
+             accuracy = 1.0,
+             effect = [],
+             pp = 35
+             }
+
   pound :: Move
   pound = Move {
   moveName = "pound",

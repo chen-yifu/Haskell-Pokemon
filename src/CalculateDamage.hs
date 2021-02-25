@@ -9,6 +9,10 @@ doDamage :: Monad m => Integer -> Pokemon -> m Pokemon
 doDamage value pokemon =
   return pokemon {pokemonHP = pokemonHP pokemon - value}
 
+doHeal :: Monad m => Integer -> Pokemon -> m Pokemon
+doHeal value pokemon =
+  return pokemon {pokemonHP = pokemonHP pokemon + value}
+
 changeCharge pokemon move = 
     do
         let targetMoveNave = moveName move
@@ -34,7 +38,12 @@ calcDmg pokemonA attMove pokemonHit =
 calcEff moveUsed pokemonHit = 
   return (getMultiplier (moveType moveUsed) (pokemonType1 pokemonHit) (pokemonType2 pokemonHit))
 
+healer :: Monad m => Pokemon -> Move -> m Integer
+healer pokemonA healMov =
+  do
+    let pow = fromIntegral (power healMov)
 
+    return pow
 
 update :: Monad m => [Move] -> Pokemon -> m Pokemon
 update moves pokemon =

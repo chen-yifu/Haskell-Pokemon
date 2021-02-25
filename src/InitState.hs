@@ -7,7 +7,8 @@ import Main
 import Move
 import UserGetMove 
 import CalculateDamage
-initState :: IO Pokemon
+import Ai
+initState :: IO (Pokemon,Pokemon)
 initState =
     do
         putStrLn "Type one of the following pokemon's index to choose it: "
@@ -20,7 +21,6 @@ initState =
         putStrLn (foldr (\(i, x) y -> show i ++ " : " ++ moveName x ++ " (" ++ show (moveType x) ++ " ; " ++ show (power x) ++ " damage; " ++ show (pp x) ++ " charges left)\n" ++ y) " " (enumerate (pokemonMoves chosenPokemon)))
         moves <- (getFourMoves (pokemonMoves chosenPokemon) [])
         chosenPokemon <- update  moves chosenPokemon
-        -- TODO: check valid index, otherwise repeat, also no duplicates
 
         play (State (chosenPokemon, pikachu))
 
@@ -53,7 +53,7 @@ checkValidIndex chosenInd availMoves chosenMoves =
         if validNum && (len >= read chosenInd) && (read chosenInd > 0)
             then do
                 -- check chosen is nonduplicate
-                let chosenMove = (availMoves!!(read chosenInd))
+                let chosenMove = (availMoves!!((read chosenInd)-1))
                 -- let chosenMoveNames = foldr (\x y -> moveName x :) [] chosenMoves
                 let isDuplicate = (elem chosenMove chosenMoves)
                 return (not isDuplicate)
