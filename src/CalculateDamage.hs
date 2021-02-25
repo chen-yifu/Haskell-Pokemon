@@ -13,6 +13,10 @@ doHeal :: Monad m => Integer -> Pokemon -> m Pokemon
 doHeal value pokemon =
   return pokemon {pokemonHP = pokemonHP pokemon + value}
 
+subHealNum :: Monad m =>  Pokemon -> m Pokemon
+subHealNum pokemon =
+  return pokemon {numHeals = numHeals pokemon - 1}
+
 changeCharge pokemon move = 
     do
         let targetMoveNave = moveName move
@@ -30,7 +34,7 @@ calcDmg pokemonA attMove pokemonHit =
     let pow = power attMove
     let attackDivDefence = (max (attackInt-defenceInt) 1) -- integer
     modifier <- (calcEff attMove pokemonHit)
-    let dmg = (fromIntegral (attackDivDefence * pow)) * modifier / 5
+    let dmg = (fromIntegral (attackDivDefence * pow)) * modifier / 75
     let roundedDmg = round dmg
     
     return roundedDmg -- (fromIntegral(max (value - (div (defence pokemon) 2)) 0))

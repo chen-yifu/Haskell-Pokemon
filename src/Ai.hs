@@ -59,7 +59,7 @@ dumbAi a b =
 
 medAi a b =
  do
- if pokemonHP b <=10
+ if (pokemonHP b <=10 && (numHeals b > 0))
    then do
    print(pokemonMoves b)
    heal <- healer b heal15
