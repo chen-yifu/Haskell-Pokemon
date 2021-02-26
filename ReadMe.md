@@ -1,4 +1,6 @@
 # How to run
+* make sure cd to the src file
+* run ghci, then compile and start with the following
 ```
 $ :load InitState
 $ Initstate
