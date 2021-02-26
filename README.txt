@@ -1,4 +1,4 @@
-
+## All Files
 Ai.hs
 -Contains functions related to AIs
 -important functions: dumbAi, medAi
