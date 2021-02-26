@@ -4,9 +4,9 @@ Authors: David, Johnson, Yifu
 # What is the this?
 For the project, we are consturcting a smpiflied version of the battle system in the famous game Pokemon. The final result will be a one-on-one, consol based battle similator. User will be abole to select different moves in their turn to attack and deffend. The game ends if the one of the pokemon's HP reaches 0 and the user runs out of usable Pokemon.
 # How to run
-* make sure cd to the threepenny-gui/samples directory
-* run 
+* make sure cd to the correct directory
 ```
+$ cd  threepenny-gui/samples
 $ stack ghci
 ```
 * then compile and start with the following
