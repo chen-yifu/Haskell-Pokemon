@@ -48,3 +48,7 @@ $ Initstate
 ## UserGetMove.hs
 * Contains functions related to get user selected moves
 * important functions: getMove, findChosenMove
+
+
+## References:
+Some Non-Pokemon Template Code is from: https://github.com/HeinrichApfelmus/threepenny-gui
