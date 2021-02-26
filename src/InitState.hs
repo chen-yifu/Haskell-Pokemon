@@ -18,8 +18,10 @@ initState =
         putStrLn "Type one of the following pokemon's index to choose it: "
         putStrLn (foldr (\(i, x) y -> show i ++ " : " ++ pokemonName x ++ "\n" ++ y) " " (enumerate allPokemons))
         chosenIndex <- getLine
-        -- let isValidIndex = checkValidIndex allPokemons chosenIndex
         let chosenPokemon = findChosenOption (enumerate allPokemons) (read chosenIndex)
+        validPokemon <- checkValidPokemon chosenIndex allPokemons 
+        if validPokemon 
+            then do
         putStrLn ("You have chosen " ++ pokemonName chosenPokemon)
         putStrLn ("Now choose your four moves, we will ask you for times")
         putStrLn (foldr (\(i, x) y -> show i ++ " : " ++ moveName x ++ " (" ++ show (moveType x) ++ " ; " ++ show (power x) ++ " damage; " ++ show (pp x) ++ " charges left)\n" ++ y) " " (enumerate (pokemonMoves chosenPokemon)))
@@ -27,6 +29,9 @@ initState =
         chosenPokemon <- update  moves chosenPokemon
 
         play (State (chosenPokemon, lilligant))
+        else do 
+            putStrLn "invalid choice!"
+            initState
 
 --given pokemon, user is given option to choose four moves that he/she wants the 
 --chosen pokemon to possess for the duration of the game.
@@ -54,6 +59,7 @@ getFourMoves availableMoves movesChosen =
 --checks if user input is valid
 --1. if user input is a number
 --2. if user input is not a repeated input
+--return true if both are valid and return false if both are not
 checkValidIndex :: (Monad m, Foldable t, Eq a) => String -> [a] -> t a -> m Bool
 checkValidIndex chosenInd availMoves chosenMoves =
     do
@@ -75,4 +81,16 @@ findChosenOption ((i,h):t) index
     | i == index = h
     | otherwise =  findChosenOption t index
 
-
+--checks if user input is valid
+--1. if user input is a number
+--2. if user input is not a within the range of acceptable numbers
+--return true if both inputs are valid false otherwise
+checkValidPokemon value pokemonList = 
+    do 
+        let validNum = isNumber(value)
+        let len = length pokemonList
+        if validNum && (len >= read value) && (read value > 0)
+            then do 
+                return True 
+            else do 
+                return False

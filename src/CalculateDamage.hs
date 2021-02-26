@@ -68,3 +68,8 @@ printStatement value
    | value == 0.5 = putStrLn "It wasn't very effective..."
    | value == 0.25 = putStrLn "It wasn't very effective..."
    | value == 0.0 = return ()
+
+  --  isValidMove move index = 
+  --    do
+  --       let validNum = isNumber (chosenInd)
+  --       if validNum index 
