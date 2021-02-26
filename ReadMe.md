@@ -1,3 +1,8 @@
+# How to run
+```
+$ :load InitState
+$ Initstate
+```
 
 # All .hs Files
 ## Ai.hs
