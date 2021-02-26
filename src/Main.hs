@@ -32,10 +32,10 @@ play (State (pokemona,pokemonb))  =
     pokemona <- changeCharge pokemona ansMove
     print("Your Pokemon uses " ++ moveName ansMove ++ " and does")
     realDmg <- calcDmg pokemona ansMove pokemonb
-    -- effDmg <- calcEff ansMove pokemonb
-    -- let finalDmg = realDmg * effDmg
     print realDmg
     print "damage!"
+    mod<-calcEff ansMove pokemonb
+    printStatement mod
     b <- doDamage realDmg pokemonb
     if pokemonHP b <= 0
       then do 

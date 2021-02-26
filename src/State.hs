@@ -2,10 +2,11 @@ module State where
 import Pokemon
 import Move
 
-
+--State of a pokemon battle
 data State = State (Pokemon,Pokemon)
          deriving (Eq, Show)
 
+--result and whether a game continues or ends based off the state
 data Result = End Double State
             | Continue State
          deriving (Eq, Show)

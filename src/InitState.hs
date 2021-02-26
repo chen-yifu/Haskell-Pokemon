@@ -8,6 +8,10 @@ import Move
 import UserGetMove 
 import CalculateDamage
 import Ai
+
+--gives user the option to choose a pokemon and its moves 
+--and an enemy pokemon will also be given out
+--returns a new fresh state with the two chosen pokemon for the new battle
 initState :: IO (Pokemon,Pokemon)
 initState =
     do
@@ -24,6 +28,8 @@ initState =
 
         play (State (chosenPokemon, lilligant))
 
+--given pokemon, user is given option to choose four moves that he/she wants the 
+--chosen pokemon to possess for the duration of the game.
 getFourMoves availableMoves movesChosen =
     if length movesChosen < 4
         then do
@@ -45,6 +51,9 @@ getFourMoves availableMoves movesChosen =
             -- return if 4 moves are chosen
             return movesChosen
 
+--checks if user input is valid
+--1. if user input is a number
+--2. if user input is not a repeated input
 checkValidIndex :: (Monad m, Foldable t, Eq a) => String -> [a] -> t a -> m Bool
 checkValidIndex chosenInd availMoves chosenMoves =
     do
@@ -60,6 +69,8 @@ checkValidIndex chosenInd availMoves chosenMoves =
             else do
                 return False
 
+--takes a list of tuples and an index value
+--and returns the tuple that matches the user inputted user value
 findChosenOption ((i,h):t) index
     | i == index = h
     | otherwise =  findChosenOption t index

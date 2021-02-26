@@ -3,6 +3,8 @@ import Pokemon
 import Move
 import CalculateDamage
 
+--takes attacker a and calculates the move that will do the least damage against b based on 
+--b's defence and type
 findLowMov a b minMove (h:t) =
     do
         let moveChosen1 = h
@@ -24,6 +26,8 @@ findLowMov a b minMove (h:t) =
                       res <- findLowMov a b minMove t
                       return res
 
+--takes attacker a and calculates the move that will do the most damage against b based on 
+--b's defence and type
 findMaxMov a b minMove (h:t) =
     do
         let moveChosen1 = h
@@ -45,6 +49,9 @@ findMaxMov a b minMove (h:t) =
                       res <- findMaxMov a b minMove t
                       return res
 
+--takes in two pokemon with a being the ai's pokemon and b being your pokemon and selects
+--a move before applying damage to your pokemon then update the state of the two pokemon
+--before returning a new state with the two updated pokemon in it.
 dumbAi a b =
  do
   let i = 0
