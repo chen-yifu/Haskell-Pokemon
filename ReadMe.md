@@ -4,7 +4,7 @@ Authors: David, Johnson, Yifu
 ## What is the this?
 For the project, we are consturcting a smpiflied version of the battle system in the famous game Pokemon. The final result will be a one-on-one, consol based battle similator. User will be abole to select different moves in their turn to attack and deffend. The game ends if the one of the pokemon's HP reaches 0 and the user runs out of usable Pokemon.
 ## How to run
-* download from Google drive and unzip at root folder
+* download from Google drive and unzip at root folder: https://drive.google.com/file/d/1s0_5hfeTb9EcjyS1--wnaM1CybNdXAEy/view?usp=sharing
 * make sure cd to the correct directory
 ```
 $ cd  pokemon-project/samples
