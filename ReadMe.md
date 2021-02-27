@@ -57,5 +57,5 @@ $ main
 
 
 ### References
-Some Non-Pokemon Template Code is from: https://github.com/HeinrichApfelmus/threepenny-gui
-The Pokemon data is from https://www.kaggle.com/mylesoneill/pokemon-sun-and-moon-gen-7-stats
+* Some Non-Pokemon Template Code is from: https://github.com/HeinrichApfelmus/threepenny-gui
+* The Pokemon data is from https://www.kaggle.com/mylesoneill/pokemon-sun-and-moon-gen-7-stats
