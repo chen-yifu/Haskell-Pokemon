@@ -6,7 +6,7 @@ For the project, we are consturcting a smpiflied version of the battle system in
 ## How to run
 * make sure cd to the correct directory
 ```
-$ cd  threepenny-gui/samples
+$ cd  pokemon-project/samples
 $ stack ghci
 ```
 * then compile and start with the following
@@ -55,5 +55,6 @@ $ main
 * important functions: getMove, findChosenMove
 
 
-### References:
+### References
 Some Non-Pokemon Template Code is from: https://github.com/HeinrichApfelmus/threepenny-gui
+The Pokemon data is from https://www.kaggle.com/mylesoneill/pokemon-sun-and-moon-gen-7-stats
